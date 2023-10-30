@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+Route::prefix('admin')->group(function () {
+    Route::view('/','admin.login')->name('admin.login');
+    Route::post('auth',[AdminController::class,'auth'])->name('admin.auth');
+    Route::middleware(['admin_auth'])->group(function () {
+        Route::get('home', [AdminController::class,'home'])->name('admin.home');
+        Route::get('logout', [AdminController::class, 'logout'])->name('admin.logout');
+        Route::view('profile', 'admin.profile')->name('admin.profile');
+        Route::post('update',[AdminController::class,'update'])->name('admin.update');
+
+//        Pr exam control
+        Route::get('pr-exam-days', [AdminController::class, 'pr_exam_days'])->name('admin.pr_exam_days');
+    });
 });

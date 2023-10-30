@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class PrAnswers extends Model
 {
     use HasFactory;
+
+    protected $table = 'pr_answers';
 }
