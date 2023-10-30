@@ -27,5 +27,6 @@ Route::prefix('admin')->group(function () {
 
 //        Pr exam control
         Route::get('pr-exam-days', [AdminController::class, 'pr_exam_days'])->name('admin.pr_exam_days');
+        Route::post('new-exam-day', [AdminController::class, 'new_pr_exam'])->name('admin.new.pr.exam');
     });
 });

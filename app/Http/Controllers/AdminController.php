@@ -50,4 +50,21 @@ class AdminController extends Controller
         $days = $this->prExamDayRepository->getAllDays();
         return view('admin.pr_exam_days', ['days' => $days]);
     }
+
+    public function new_pr_exam(Request $request){
+        $request->validate([
+            'date' => 'required|date',
+            'amount' => 'required|string',
+        ]);
+        $amountString = str_replace([' ', ','], '', $request->input('amount'));
+        $amount = (float) $amountString;
+        $day = $this->prExamDayRepository->getLatestDay();
+        if ((!$day) or ($day->status == 1)){
+            $this->prExamDayRepository->new_day($request->date, $amount);
+            return redirect()->back()->with('success',1);
+        }
+        else{
+            return redirect()->back()->with('day_error',1);
+        }
+    }
 }

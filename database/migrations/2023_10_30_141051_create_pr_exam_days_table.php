@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->date('date');
             $table->bigInteger('amount');
-            $table->bigInteger('sales_amount');
-            $table->bigInteger('status');
-            $table->bigInteger('quiz_count');
+            $table->bigInteger('sales_amount')->default(0);
+            $table->bigInteger('status')->default(0);
+            $table->bigInteger('quiz_count')->default(0);
             $table->timestamps();
         });
     }
