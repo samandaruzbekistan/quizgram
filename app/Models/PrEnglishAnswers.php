@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class PrEnglishAnswers extends Model
 {
     use HasFactory;
+
+    public function quiz() {
+        return $this->belongsTo(PrEnglishQuizzes::class, 'quiz_id');
+    }
 }

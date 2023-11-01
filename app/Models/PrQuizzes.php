@@ -10,4 +10,8 @@ class PrQuizzes extends Model
     use HasFactory;
 
     protected $table = 'pr_quizzes';
+
+    public function answers() {
+        return $this->hasMany(PrAnswers::class, 'quiz_id');
+    }
 }

@@ -10,4 +10,8 @@ class PrAnswers extends Model
     use HasFactory;
 
     protected $table = 'pr_answers';
+
+    public function quiz() {
+        return $this->belongsTo(PrQuizzes::class, 'quiz_id');
+    }
 }

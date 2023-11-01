@@ -9,4 +9,12 @@ class PrExam extends Model
 {
     use HasFactory;
     protected $table = 'pr_exams';
+
+    public function user() {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function examDay() {
+        return $this->belongsTo(PrExamDay::class, 'exam_day_id');
+    }
 }
