@@ -10,4 +10,6 @@ class AdminRepository
         $admin = Admin::where('username', $username)->first();
         return $admin;
     }
+
+
 }

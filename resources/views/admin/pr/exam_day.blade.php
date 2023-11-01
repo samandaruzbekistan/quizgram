@@ -38,7 +38,7 @@
     </style>
 @endpush
 
-@section('outlays')
+@section('exam_days')
     active
 @endsection
 @section('section')
@@ -48,18 +48,38 @@
                 <div class="">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title mb-0">Yangi xarajat qo'shish</h5>
+                            <h5 class="card-title mb-0">Yangi savol qo'shish</h5>
                         </div>
                         <div class="card-body h-100">
-                            <form action="{{ route('admin.new.pr.exam') }}" method="post">
+                            <form action="{{ route('admin.new.pr.quiz') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-3">
-                                    <label class="form-label">Sana <span class="text-danger">*</span></label>
-                                    <input name="date" required type="date" value="{{ date('Y-m-d') }}" min="{{ date('Y-m-d') }}" class="form-control" placeholder="">
+                                    <label class="form-label">Savol <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" name="quiz"></textarea>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Summa <span class="text-danger">*</span></label>
-                                    <input type="text" oninput="formatPaymentAmount(this)" class="form-control" name="amount" id="summa">
+                                    <label class="form-label">Rasm </label>
+                                    <input class="form-control" name="photo" type="file" accept="image/*">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">A javob <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" name="a_answer"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">B javob <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" name="b_answer"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">C javob <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" name="c_answer"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">D javob <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" name="d_answer"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Ball <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" name="ball" id="summa">
                                 </div>
 
                                 <div class=" text-end">

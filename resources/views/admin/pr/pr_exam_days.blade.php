@@ -38,7 +38,7 @@
     </style>
 @endpush
 
-@section('outlays')
+@section('exam_days')
     active
 @endsection
 @section('section')
@@ -48,7 +48,7 @@
                 <div class="">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title mb-0">Yangi xarajat qo'shish</h5>
+                            <h5 class="card-title mb-0">Yangi imtixon kuni qo'shish</h5>
                         </div>
                         <div class="card-body h-100">
                             <form action="{{ route('admin.new.pr.exam') }}" method="post">
