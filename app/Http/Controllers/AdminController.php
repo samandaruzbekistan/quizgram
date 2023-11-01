@@ -48,7 +48,7 @@ class AdminController extends Controller
 
     public function pr_exam_days(){
         $days = $this->prExamDayRepository->getAllDays();
-        return view('admin.pr_exam_days', ['days' => $days]);
+        return view('admin.pr.pr_exam_days', ['days' => $days]);
     }
 
     public function new_pr_exam(Request $request){
@@ -66,5 +66,11 @@ class AdminController extends Controller
         else{
             return redirect()->back()->with('day_error',1);
         }
+    }
+
+    public function pr_exam($id){
+        $day = $this->prExamDayRepository->getDayById($id);
+        if (!$day) return redirect()->back();
+        return view('admin.pr.exam_day', ['day' => $day]);
     }
 }

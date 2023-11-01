@@ -8,29 +8,29 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
-        Schema::disableForeignKeyConstraints();
-
-        Schema::create('pr_quizzes', function (Blueprint $table) {
+        Schema::create('pr_english_topics', function (Blueprint $table) {
             $table->id();
-            $table->text('quiz');
-            $table->string('photo');
-            $table->bigInteger('exam_day_id');
+            $table->unsignedBigInteger('exam_day_id');
             $table->foreign('exam_day_id')->references('id')->on('pr_exam_days');
-            $table->float('ball');
+            $table->string('title');
+            $table->text('topic');
+            $table->string('note');
             $table->timestamps();
         });
-
-        Schema::enableForeignKeyConstraints();
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('pr_quizzes');
+        Schema::dropIfExists('pr_english_topics');
     }
 };

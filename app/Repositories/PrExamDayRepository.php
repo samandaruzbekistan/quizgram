@@ -10,6 +10,10 @@ class PrExamDayRepository
         return PrExamDay::latest()->get();
     }
 
+    public function getDayById($id){
+        return PrExamDay::find($id);
+    }
+
     public function getLatestDay(){
         $day = PrExamDay::latest()->first();
         return $day;
