@@ -3,35 +3,155 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
     <style>
-        .pagination{height:36px;margin:0;padding: 0;}
-        .pager,.pagination ul{margin-left:0;*zoom:1}
-        .pagination ul{padding:0;display:inline-block;*display:inline;margin-bottom:0;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 2px rgba(0,0,0,.05);-moz-box-shadow:0 1px 2px rgba(0,0,0,.05);box-shadow:0 1px 2px rgba(0,0,0,.05)}
-        .pagination li{display:inline}
-        .pagination a{float:left;padding:0 12px;line-height:30px;text-decoration:none;border:1px solid #ddd;border-left-width:0}
-        .pagination .active a,.pagination a:hover{background-color:#f5f5f5;color:#94999E}
-        .pagination .active a{color:#94999E;cursor:default}
-        .pagination .disabled a,.pagination .disabled a:hover,.pagination .disabled span{color:#94999E;background-color:transparent;cursor:default}
-        .pagination li:first-child a,.pagination li:first-child span{border-left-width:1px;-webkit-border-radius:3px 0 0 3px;-moz-border-radius:3px 0 0 3px;border-radius:3px 0 0 3px}
-        .pagination li:last-child a{-webkit-border-radius:0 3px 3px 0;-moz-border-radius:0 3px 3px 0;border-radius:0 3px 3px 0}
-        .pagination-centered{text-align:center}
-        .pagination-right{text-align:right}
-        .pager{margin-bottom:18px;text-align:center}
-        .pager:after,.pager:before{display:table;content:""}
-        .pager li{display:inline}
-        .pager a{display:inline-block;padding:5px 12px;background-color:#fff;border:1px solid #ddd;-webkit-border-radius:15px;-moz-border-radius:15px;border-radius:15px}
-        .pager a:hover{text-decoration:none;background-color:#f5f5f5}
-        .pager .next a{float:right}
-        .pager .previous a{float:left}
-        .pager .disabled a,.pager .disabled a:hover{color:#999;background-color:#fff;cursor:default}
-        .pagination .prev.disabled span{float:left;padding:0 12px;line-height:30px;text-decoration:none;border:1px solid #ddd;border-left-width:0}
-        .pagination .next.disabled span{float:left;padding:0 12px;line-height:30px;text-decoration:none;border:1px solid #ddd;border-left-width:0}
-        .pagination li.active, .pagination li.disabled {
-            float:left;padding:0 12px;line-height:30px;text-decoration:none;border:1px solid #ddd;border-left-width:0
+        .pagination {
+            height: 36px;
+            margin: 0;
+            padding: 0;
         }
+
+        .pager, .pagination ul {
+            margin-left: 0;
+            *zoom: 1
+        }
+
+        .pagination ul {
+            padding: 0;
+            display: inline-block;
+            *display: inline;
+            margin-bottom: 0;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+            -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, .05)
+        }
+
+        .pagination li {
+            display: inline
+        }
+
+        .pagination a {
+            float: left;
+            padding: 0 12px;
+            line-height: 30px;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-left-width: 0
+        }
+
+        .pagination .active a, .pagination a:hover {
+            background-color: #f5f5f5;
+            color: #94999E
+        }
+
+        .pagination .active a {
+            color: #94999E;
+            cursor: default
+        }
+
+        .pagination .disabled a, .pagination .disabled a:hover, .pagination .disabled span {
+            color: #94999E;
+            background-color: transparent;
+            cursor: default
+        }
+
+        .pagination li:first-child a, .pagination li:first-child span {
+            border-left-width: 1px;
+            -webkit-border-radius: 3px 0 0 3px;
+            -moz-border-radius: 3px 0 0 3px;
+            border-radius: 3px 0 0 3px
+        }
+
+        .pagination li:last-child a {
+            -webkit-border-radius: 0 3px 3px 0;
+            -moz-border-radius: 0 3px 3px 0;
+            border-radius: 0 3px 3px 0
+        }
+
+        .pagination-centered {
+            text-align: center
+        }
+
+        .pagination-right {
+            text-align: right
+        }
+
+        .pager {
+            margin-bottom: 18px;
+            text-align: center
+        }
+
+        .pager:after, .pager:before {
+            display: table;
+            content: ""
+        }
+
+        .pager li {
+            display: inline
+        }
+
+        .pager a {
+            display: inline-block;
+            padding: 5px 12px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            -webkit-border-radius: 15px;
+            -moz-border-radius: 15px;
+            border-radius: 15px
+        }
+
+        .pager a:hover {
+            text-decoration: none;
+            background-color: #f5f5f5
+        }
+
+        .pager .next a {
+            float: right
+        }
+
+        .pager .previous a {
+            float: left
+        }
+
+        .pager .disabled a, .pager .disabled a:hover {
+            color: #999;
+            background-color: #fff;
+            cursor: default
+        }
+
+        .pagination .prev.disabled span {
+            float: left;
+            padding: 0 12px;
+            line-height: 30px;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-left-width: 0
+        }
+
+        .pagination .next.disabled span {
+            float: left;
+            padding: 0 12px;
+            line-height: 30px;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-left-width: 0
+        }
+
+        .pagination li.active, .pagination li.disabled {
+            float: left;
+            padding: 0 12px;
+            line-height: 30px;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-left-width: 0
+        }
+
         .pagination li.active {
             background: #3b7ddd;
             color: #fff;
         }
+
         .pagination li:first-child {
             border-left-width: 1px;
         }
@@ -57,25 +177,46 @@
                                     <label class="form-label">Savol <span class="text-danger">*</span></label>
                                     <textarea class="form-control" name="quiz"></textarea>
                                 </div>
+                                <input type="hidden" name="exam_day_id" value="{{ $day->id }}">
                                 <div class="mb-3">
                                     <label class="form-label">Rasm </label>
                                     <input class="form-control" name="photo" type="file" accept="image/*">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">A javob <span class="text-danger">*</span></label>
+                                    <label class="form-label">A javob <span
+                                            class="text-danger">tog'ri javob *</span></label>
                                     <textarea class="form-control" name="a_answer"></textarea>
                                 </div>
+                                <div class="mb-3">
+                                    <label class="form-label">A Rasm </label>
+                                    <input class="form-control" name="a_photo" type="file" accept="image/*">
+                                </div>
+                                <hr>
                                 <div class="mb-3">
                                     <label class="form-label">B javob <span class="text-danger">*</span></label>
                                     <textarea class="form-control" name="b_answer"></textarea>
                                 </div>
                                 <div class="mb-3">
+                                    <label class="form-label">B Rasm </label>
+                                    <input class="form-control" name="b_photo" type="file" accept="image/*">
+                                </div>
+                                <hr>
+                                <div class="mb-3">
                                     <label class="form-label">C javob <span class="text-danger">*</span></label>
                                     <textarea class="form-control" name="c_answer"></textarea>
                                 </div>
                                 <div class="mb-3">
+                                    <label class="form-label">C Rasm </label>
+                                    <input class="form-control" name="c_photo" type="file" accept="image/*">
+                                </div>
+                                <hr>
+                                <div class="mb-3">
                                     <label class="form-label">D javob <span class="text-danger">*</span></label>
                                     <textarea class="form-control" name="d_answer"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">D Rasm </label>
+                                    <input class="form-control" name="d_photo" type="file" accept="image/*">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Ball <span class="text-danger">*</span></label>
@@ -113,13 +254,13 @@
                         <tr>
                             <th>#</th>
                             <th>Sana</th>
-                            <th>Narxi</th>
-                            <th>Sotuv summasi</th>
-                            <th>Holati</th>
-                            <th>Savollar soni</th>
-                            <th>Savollar</th>
-                            <th>Natijalar</th>
-                            <th>Yakunlash</th>
+                            <th>Togri javob</th>
+                            <th>B javob</th>
+                            <th>C javob</th>
+                            <th>D javob</th>
+                            <th>Ball</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
                         </tr>
                         </thead>
                         <tbody id="old-data">
@@ -127,15 +268,33 @@
                             <tr>
                                 <td>{{ $id+1 }}</td>
                                 <td>
-                                    {{ $day->date }}
+                                    {{ $day->quiz }}
                                 </td>
-                                <td>{{ $day->amount }}</td>
-                                <td>{{ $day->sales_amount }}</td>
-                                <td>{{ $day->status }}</td>
-                                <td>{{ $day->quiz_count }}</td>
-                                <td><a href="{{ route('admin.pr.exam', ['id' => $day->id]) }}" class="btn mb-1 btn-bitbucket"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye align-middle"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></a></td>
-                                <td><a class="btn mb-1 btn-vimeo"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers align-middle"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg></a></td>
-                                <td><a class="btn mb-1 btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock align-middle"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></a></td>
+                                <td class="text-danger">{{ $day->answers[0]->answer }}</td>
+                                <td>{{ $day->answers[1]->answer }}</td>
+                                <td>{{ $day->answers[2]->answer }}</td>
+                                <td>{{ $day->answers[3]->answer }}</td>
+                                <td>{{ $day->ball }}</td>
+                                <td><a href="{{ route('admin.pr.exam', ['id' => $day->id]) }}"
+                                       class="btn mb-1 btn-bitbucket">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                             stroke-linecap="round" stroke-linejoin="round"
+                                             class="feather feather-edit-3 align-middle ">
+                                            <path d="M12 20h9"></path>
+                                            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                        </svg>
+                                    </a></td>
+                                <td><a class="btn mb-1 btn-danger">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                             stroke-linecap="round" stroke-linejoin="round"
+                                             class="feather feather-trash align-middle ">
+                                            <polyline points="3 6 5 6 21 6"></polyline>
+                                            <path
+                                                d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                        </svg>
+                                    </a></td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -150,18 +309,18 @@
 
 @section('js')
     <script>
-        $(".add").on("click", function() {
+        $(".add").on("click", function () {
             $('.forma').show();
             $('.teachers').hide();
         });
 
-        $(".cancel").on("click", function() {
+        $(".cancel").on("click", function () {
             event.stopPropagation();
             $('.forma').hide();
             $('.teachers').show();
         });
 
-        $(".cancel1").on("click", function() {
+        $(".cancel1").on("click", function () {
             event.stopPropagation();
             $('.edit-forma').hide();
             $('.teachers').show();
@@ -202,10 +361,24 @@
         notyf.success({
             message: 'Imtixon kuni qo\'shildi!',
             duration: 5000,
-            dismissible : true,
+            dismissible: true,
             position: {
-                x : 'right',
-                y : 'bottom'
+                x: 'right',
+                y: 'bottom'
+            },
+        });
+        @endif
+
+        @if(session('quiz_save') == 1)
+        const notyf = new Notyf();
+
+        notyf.success({
+            message: 'Savol  qo\'shildi!',
+            duration: 5000,
+            dismissible: true,
+            position: {
+                x: 'right',
+                y: 'bottom'
             },
         });
         @endif
@@ -216,10 +389,24 @@
         notyf.error({
             message: 'Xatolik! Imtixon yakunlanmagan',
             duration: 5000,
-            dismissible : true,
+            dismissible: true,
             position: {
-                x : 'right',
-                y : 'bottom'
+                x: 'right',
+                y: 'bottom'
+            },
+        });
+        @endif
+
+        @if(session('error') == 1)
+        const notyf = new Notyf();
+
+        notyf.error({
+            message: 'Xatolik! Savol q\'shilmadi',
+            duration: 5000,
+            dismissible: true,
+            position: {
+                x: 'right',
+                y: 'bottom'
             },
         });
         @endif

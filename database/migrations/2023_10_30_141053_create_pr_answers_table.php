@@ -15,7 +15,7 @@ return new class extends Migration
 
         Schema::create('pr_answers', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('answer');
+            $table->text('answer');
             $table->string('photo');
             $table->unsignedBigInteger('quiz_id');
             $table->foreign('quiz_id')->references('id')->on('pr_quizzes');

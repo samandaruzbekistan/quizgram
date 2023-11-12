@@ -90,16 +90,68 @@ class AdminController extends Controller
             'c_answer' => 'required|string',
             'd_answer' => 'required|string',
             'exam_day_id' => 'required|numeric',
+            'ball' => 'required|numeric',
             'photo' => 'image|max:2048',
+            'a_photo' => 'image|max:2048',
+            'b_photo' => 'image|max:2048',
+            'c_photo' => 'image|max:2048',
+            'd_photo' => 'image|max:2048',
         ]);
         $photo_name = "no_photo";
+        $a_photo_name = "no_photo";
+        $b_photo_name = "no_photo";
+        $c_photo_name = "no_photo";
+        $d_photo_name = "no_photo";
         if ($request->hasFile('photo')){
             $file = $request->file('photo')->extension();
             $name = md5(microtime());
             $photo_name = $name.".".$file;
             $path = $request->file('photo')->move('img/quiz/',$photo_name);
         }
-
+        if ($request->hasFile('a_photo')){
+            $file = $request->file('a_photo')->extension();
+            $name = md5(microtime());
+            $a_photo_name = "a".$name.".".$file;
+            $path = $request->file('a_photo')->move('img/quiz/',$a_photo_name);
+        }
+        if ($request->hasFile('b_photo')){
+            $file = $request->file('b_photo')->extension();
+            $name = md5(microtime());
+            $b_photo_name = "b".$name.".".$file;
+            $path = $request->file('b_photo')->move('img/quiz/',$b_photo_name);
+        }
+        if ($request->hasFile('c_photo')){
+            $file = $request->file('c_photo')->extension();
+            $name = md5(microtime());
+            $c_photo_name = "c".$name.".".$file;
+            $path = $request->file('c_photo')->move('img/quiz/',$c_photo_name);
+        }
+        if ($request->hasFile('d_photo')){
+            $file = $request->file('d_photo')->extension();
+            $name = md5(microtime());
+            $d_photo_name = "d".$name.".".$file;
+            $path = $request->file('d_photo')->move('img/quiz/',$d_photo_name);
+        }
+        $saved_id = $this->prExamQuizzesRepository->save_pr_quiz(
+            $request->quiz,
+            $photo_name,
+            $request->a_answer,
+            $request->b_answer,
+            $request->c_answer,
+            $request->d_answer,
+            $a_photo_name,
+            $b_photo_name,
+            $c_photo_name,
+            $d_photo_name,
+            $request->ball,
+            $request->exam_day_id
+        );
+        if (!$saved_id){
+            return back()->with('error',1);
+        }
+        else{
+            return back()->with('quiz_save',1);
+        }
     }
 
 }
