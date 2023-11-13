@@ -82,6 +82,9 @@ class AdminController extends Controller
         return view('admin.pr.exam_day', ['day' => $day]);
     }
 
+
+
+
     public function new_quiz_pr(Request $request){
         $request->validate([
             'quiz' => 'required|string',
@@ -150,8 +153,19 @@ class AdminController extends Controller
             return back()->with('error',1);
         }
         else{
+            $this->prExamDayRepository->incrementQuizCount($request->exam_day_id);
             return back()->with('quiz_save',1);
         }
+    }
+
+    public function delete_pr_quiz(Request $request){
+        $request->validate([
+            'quiz_id' => 'required|numeric',
+            'exam_day_id' => 'required|numeric',
+        ]);
+        $this->prExamQuizzesRepository->pr_quiz_delete($request->quiz_id);
+        $this->prExamDayRepository->decrementQuizCount($request->exam_day_id);
+        return back();
     }
 
 }

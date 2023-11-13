@@ -29,6 +29,9 @@ Route::prefix('admin')->group(function () {
         Route::get('pr-exam-days', [AdminController::class, 'pr_exam_days'])->name('admin.pr_exam_days');
         Route::post('new-exam-day', [AdminController::class, 'new_pr_exam'])->name('admin.new.pr.exam');
         Route::get('exam-day/{id?}', [AdminController::class, 'pr_exam'])->name('admin.pr.exam');
+
+//        Pr exam quiz control
         Route::post('new-pr-exam-quiz', [AdminController::class, 'new_quiz_pr'])->name('admin.new.pr.quiz');
+        Route::post('delete-pr-quiz', [AdminController::class, 'delete_pr_quiz'])->name('admin.pr.quiz.delete');
     });
 });

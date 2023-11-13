@@ -7,9 +7,6 @@ use App\Models\PrQuizzes;
 
 class PrExamQuizzesRepository
 {
-    public function __construct(protected PrExamDayRepository $prExamDayRepository)
-    {
-    }
 
     public function save_pr_quiz(
         $quiz, $photo, $a_answer,
@@ -28,7 +25,6 @@ class PrExamQuizzesRepository
         $this->save_answer($b_answer,$b_photo,$id,$ball,0);
         $this->save_answer($c_answer,$c_photo,$id,$ball,0);
         $this->save_answer($d_answer,$d_photo,$id,$ball,0);
-        $this->prExamDayRepository->incrementQuizCount($exam_day_id);
         return $id;
     }
 
@@ -40,5 +36,24 @@ class PrExamQuizzesRepository
         $ans->ball = $ball;
         $ans->correct = $correct;
         $ans->save();
+    }
+
+    public function pr_quiz_delete($quiz_id){
+        $quiz = PrQuizzes::find($quiz_id);
+        if ($quiz->photo != "no_photo"){
+            unlink("img/quiz/".$quiz->photo);
+        }
+        $this->delete_quiz_answers($quiz_id);
+        PrQuizzes::where('id',$quiz_id)->delete();
+    }
+
+    protected function delete_quiz_answers($quiz_id){
+        $answers = PrAnswers::where('quiz_id',$quiz_id)->get();
+        foreach ($answers as $answer){
+            if ($answer->photo != "no_photo"){
+                unlink("img/quiz/".$answer->photo);
+            }
+        }
+        PrAnswers::where('quiz_id',$quiz_id)->delete();
     }
 }
