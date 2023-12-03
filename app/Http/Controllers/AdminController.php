@@ -123,6 +123,7 @@ class AdminController extends Controller
             'c_answer' => 'required|string',
             'd_answer' => 'required|string',
             'section_id' => 'required|numeric',
+            'exam_day_id' => 'required|numeric',
             'ball' => 'required|numeric',
             'photo' => 'image|max:2048',
             'a_photo' => 'image|max:2048',

@@ -217,6 +217,7 @@
                                     <textarea class="form-control" name="quiz"></textarea>
                                 </div>
                                 <input type="hidden" id="section_id" name="section_id" value="">
+                                <input type="hidden" id="section_id" name="exam_day_id" value="{{ $day->id }}">
                                 <div class="mb-3">
                                     <label class="form-label">Rasm </label>
                                     <input class="form-control" name="photo" type="file" accept="image/*">
@@ -259,7 +260,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Ball <span class="text-danger">*</span></label>
-                                    <input type="number" class="form-control" name="ball" id="summa">
+                                    <input type="text" class="form-control" name="ball" id="summa">
                                 </div>
 
                                 <div class=" text-end">
