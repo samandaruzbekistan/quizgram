@@ -42,7 +42,7 @@
 
 
                 <li class="sidebar-header">
-                    Pr
+                    Prezident maktabi
                 </li>
 
                 <li class="sidebar-item @yield('exam_days')">

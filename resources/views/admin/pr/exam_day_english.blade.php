@@ -177,6 +177,10 @@
                                     <label class="form-label">Savol <span class="text-danger">*</span></label>
                                     <textarea class="form-control" name="quiz"></textarea>
                                 </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Savol <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" name="quiz"></textarea>
+                                </div>
                                 <input type="hidden" name="exam_day_id" value="{{ $day->id }}">
                                 <div class="mb-3">
                                     <label class="form-label">Rasm </label>
@@ -242,7 +246,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-6">
-                                <h5 class="card-title mb-0">Imtixon savollari ro'yhati <span class="text-danger">(Matematika)</span></h5>
+                                <h5 class="card-title mb-0">Imtixon savollari ro'yhati <span class="text-danger">(English)</span></h5>
                             </div>
                             <div class="col-6 text-end">
                                 <button class="btn btn-info add">+ Savol qo'shish</button>
@@ -264,7 +268,7 @@
                         </tr>
                         </thead>
                         <tbody id="old-data">
-                        @foreach($day->quizzes as $id => $quiz)
+                        @foreach($day->englishTopics as $id => $quiz)
                             <tr>
                                 <td>{{ $id+1 }}</td>
                                 <td>

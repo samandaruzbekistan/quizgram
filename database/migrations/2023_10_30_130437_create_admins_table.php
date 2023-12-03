@@ -25,7 +25,7 @@ return new class extends Migration
         \Illuminate\Support\Facades\DB::table('admins')
             ->insert([
                 'username' => 'saman',
-                'password' => 'admin',
+                'password' => '$2y$10$GTBGX/eYneWjvPh1bPb2vOewnvNvgsEMcA/Pfds.RyavTzi8DFjSO',
                 'fullname' => 'Samandar Sariboyev',
                 'phone' => '998975672009'
             ]);

@@ -82,6 +82,12 @@ class AdminController extends Controller
         return view('admin.pr.exam_day', ['day' => $day]);
     }
 
+    public function pr_exam_english($id){
+        $day = $this->prExamDayRepository->getDayById($id);
+        if (!$day) return redirect()->back();
+        return view('admin.pr.exam_day_english', ['day' => $day]);
+    }
+
 
 
 

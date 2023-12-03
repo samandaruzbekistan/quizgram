@@ -13,8 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('pr_english_topics', function (Blueprint $table) {
+        Schema::create('quiz_sections', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->text('topic');
             $table->string('photo')->default('no_photo');
+            $table->unsignedBigInteger('exam_day_id');
+            $table->foreign('exam_day_id')->references('id')->on('pr_exam_days');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('pr_english_topics', function (Blueprint $table) {
-            $table->dropColumn('photo');
-        });
+        Schema::dropIfExists('quiz_sections');
     }
 };
