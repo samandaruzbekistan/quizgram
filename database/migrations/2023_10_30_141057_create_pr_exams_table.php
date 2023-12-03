@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('exam_day_id')->references('id')->on('pr__exam_days');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->date('date');
             $table->bigInteger('quiz_count');
             $table->bigInteger('correct');
             $table->bigInteger('incorrect');
