@@ -97,8 +97,7 @@
                             <th>Sotuv summasi</th>
                             <th>Holati</th>
                             <th>Savollar soni</th>
-                            <th>Savollar Math</th>
-                            <th>Savollar English</th>
+                            <th>Savollar</th>
                             <th>Natijalar</th>
                             <th>Yakunlash</th>
                         </tr>
@@ -115,7 +114,6 @@
                                 <td>{{ $day->status }}</td>
                                 <td>{{ $day->quiz_count }}</td>
                                 <td><a href="{{ route('admin.pr.exam', ['id' => $day->id]) }}" class="btn mb-1 btn-bitbucket"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye align-middle"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></a></td>
-                                <td><a href="{{ route('admin.pr.exam.english', ['id' => $day->id]) }}" class="btn mb-1 btn-warning"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye align-middle"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></a></td>
                                 <td><a class="btn mb-1 btn-vimeo"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers align-middle"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg></a></td>
                                 <td><a class="btn mb-1 btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock align-middle"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></a></td>
                             </tr>

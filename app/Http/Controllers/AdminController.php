@@ -76,20 +76,44 @@ class AdminController extends Controller
         }
     }
 
+    public function new_pr_section(Request $request){
+        $request->validate([
+            'name' => 'required|string',
+            'exam_day_id' => 'required|numeric',
+        ]);
+        $photo_name = 'no_photo';
+        if ($request->hasFile('photo')){
+            $file = $request->file('photo')->extension();
+            $name = md5(microtime());
+            $photo_name = $name.".".$file;
+            $path = $request->file('photo')->move('img/quiz/',$photo_name);
+        }
+        $topic = '';
+        if ($request->has('topic')) $topic = $request->topic;
+        $this->prExamQuizzesRepository->new_section($request->exam_day_id, $request->name, $photo_name, $topic);
+        return back()->with('new-section', 1);
+    }
+
+    public function delete_pr_section(Request $request){
+        $request->validate([
+            'section_id' => 'required|numeric'
+        ]);
+        $section = $this->prExamQuizzesRepository->get_section($request->section_id);
+        foreach ($section->quizzes as $quiz){
+            $this->prExamQuizzesRepository->pr_quiz_delete($quiz->id);
+        }
+        if ($section->photo != 'no_photo'){
+            unlink('img/quiz/'.$section->photo);
+        }
+        $this->prExamQuizzesRepository->delete_section($request->section_id);
+        return back()->with('section_delete',1);
+    }
+
     public function pr_exam($id){
         $day = $this->prExamDayRepository->getDayById($id);
         if (!$day) return redirect()->back();
         return view('admin.pr.exam_day', ['day' => $day]);
     }
-
-    public function pr_exam_english($id){
-        $day = $this->prExamDayRepository->getDayById($id);
-        if (!$day) return redirect()->back();
-        return view('admin.pr.exam_day_english', ['day' => $day]);
-    }
-
-
-
 
     public function new_quiz_pr(Request $request){
         $request->validate([
@@ -98,7 +122,7 @@ class AdminController extends Controller
             'b_answer' => 'required|string',
             'c_answer' => 'required|string',
             'd_answer' => 'required|string',
-            'exam_day_id' => 'required|numeric',
+            'section_id' => 'required|numeric',
             'ball' => 'required|numeric',
             'photo' => 'image|max:2048',
             'a_photo' => 'image|max:2048',
@@ -153,7 +177,7 @@ class AdminController extends Controller
             $c_photo_name,
             $d_photo_name,
             $request->ball,
-            $request->exam_day_id
+            $request->section_id
         );
         if (!$saved_id){
             return back()->with('error',1);

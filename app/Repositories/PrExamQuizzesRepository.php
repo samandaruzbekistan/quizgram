@@ -4,20 +4,38 @@ namespace App\Repositories;
 
 use App\Models\PrAnswers;
 use App\Models\PrQuizzes;
+use App\Models\QuizSection;
 
 class PrExamQuizzesRepository
 {
+
+    public function new_section($examDayId,$name, $photo, $topic){
+        $section = new QuizSection;
+        $section->name = $name;
+        $section->exam_day_id = $examDayId;
+        $section->photo = $photo;
+        $section->topic = $topic;
+        $section->save();
+    }
+
+    public function get_section($id){
+        return QuizSection::find($id);
+    }
+
+    public function delete_section($id){
+        QuizSection::where('id', $id)->delete();
+    }
 
     public function save_pr_quiz(
         $quiz, $photo, $a_answer,
         $b_answer,$c_answer,$d_answer,
         $a_photo, $b_photo,$c_photo,
-        $d_photo, $ball, $exam_day_id
+        $d_photo, $ball, $section_id
     ){
         $q = new PrQuizzes;
         $q->quiz = $quiz;
         $q->photo = $photo;
-        $q->exam_day_id = $exam_day_id;
+        $q->section_id = $section_id;
         $q->ball = $ball;
         $q->save();
         $id = $q->id;

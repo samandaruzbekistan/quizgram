@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->text('quiz');
             $table->string('photo');
-            $table->unsignedBigInteger('quiz_section_id');
+            $table->unsignedBigInteger('section_id');
             $table->foreign('quiz_section_id')->references('id')->on('quiz_sections');
             $table->float('ball');
             $table->timestamps();
