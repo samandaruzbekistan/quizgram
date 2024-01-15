@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Region;
 use App\Repositories\AdminRepository;
+use App\Repositories\OlympicExamDaysRepository;
 use App\Repositories\PrExamDayRepository;
 use App\Repositories\PrExamQuizzesRepository;
 use Illuminate\Http\Request;
@@ -15,6 +16,7 @@ class AdminController extends Controller
         protected AdminRepository $adminRepository,
         protected PrExamDayRepository $prExamDayRepository,
         protected PrExamQuizzesRepository $prExamQuizzesRepository,
+        protected OlympicExamDaysRepository $olympicExamDaysRepository,
     )
     {
     }
@@ -51,6 +53,39 @@ class AdminController extends Controller
     }
 
 
+
+    public function olympic_exam_days(){
+        $days = $this->olympicExamDaysRepository->getAllDays();
+        return view('admin.olympic.exam_days', ['days' => $days]);
+    }
+
+    public function new_olympic_exam(Request $request){
+        $request->validate([
+            'date' => 'required|date',
+            'name' => 'required|string',
+            'description' => 'required|string',
+            'partner' => 'required|string',
+            'logo' => 'required|file',
+            'amount' => 'required|string',
+        ]);
+        $amountString = str_replace([' ', ','], '', $request->input('amount'));
+        $amount = (float) $amountString;
+        $day = $this->olympicExamDaysRepository->getLatestDay();
+        $photo_name = 'no_photo';
+        if ($request->hasFile('photo')){
+            $file = $request->file('photo')->extension();
+            $name = md5(microtime());
+            $photo_name = $name.".".$file;
+            $path = $request->file('photo')->move('img/logos/',$photo_name);
+        }
+        if ((!$day) or ($day->status == 1)){
+            $this->olympicExamDaysRepository->new_day($request->date, $amount, $request->name, $photo_name, $request->partner, $request->description);
+            return redirect()->back()->with('success',1);
+        }
+        else{
+            return redirect()->back()->with('day_error',1);
+        }
+    }
 
 
 
