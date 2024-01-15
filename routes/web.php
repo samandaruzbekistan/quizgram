@@ -32,13 +32,19 @@ Route::prefix('admin')->group(function () {
         Route::post('delete-exam-section', [AdminController::class, 'delete_pr_section'])->name('admin.pr.section.delete');
         Route::get('exam-day/{id?}', [AdminController::class, 'pr_exam'])->name('admin.pr.exam');
 
-//      Olympic control
-        Route::get('olympic-exam-days', [AdminController::class, 'olympic_exam_days'])->name('admin.olympic_exam_days');
-        Route::post('new-olympic-day', [AdminController::class, 'new_olympic_exam'])->name('admin.new.olympic.exam');
-
-
 //        Pr exam quiz control
         Route::post('new-pr-exam-quiz', [AdminController::class, 'new_quiz_pr'])->name('admin.new.pr.quiz');
         Route::post('delete-pr-quiz', [AdminController::class, 'delete_pr_quiz'])->name('admin.pr.quiz.delete');
+
+//      Olympic exam control
+        Route::get('olympic-exam-days', [AdminController::class, 'olympic_exam_days'])->name('admin.olympic_exam_days');
+        Route::post('new-olympic-day', [AdminController::class, 'new_olympic_exam'])->name('admin.new.olympic.exam');
+        Route::get('olympic-exam-day/{id?}', [AdminController::class, 'olympic_exam'])->name('admin.olympic.exam');
+        Route::post('new-olympic-section', [AdminController::class, 'new_olympic_section'])->name('admin.new.olympic.section');
+        Route::post('delete-olympic-section', [AdminController::class, 'delete_olympic_section'])->name('admin.olympic.section.delete');
+
+//      Olympic exam quiz control
+        Route::post('new-olympic-exam-quiz', [AdminController::class, 'new_quiz_olympic'])->name('admin.new.olympic.quiz');
+        Route::post('delete-olympic-quiz', [AdminController::class, 'delete_olympic_quiz'])->name('admin.olympic.quiz.delete');
     });
 });

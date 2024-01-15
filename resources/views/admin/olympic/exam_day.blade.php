@@ -4,7 +4,7 @@
     <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
 @endpush
 
-@section('exam_days')
+@section('olympic_exam_days')
     active
 @endsection
 @section('section')
@@ -21,7 +21,7 @@
             <div class="">
                 <div class="card">
                     <div class="card-body h-100">
-                        <form action="{{ route('admin.new.pr.section') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('admin.new.olympic.section') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
                                 <label class="form-label">Nomi <span class="text-danger">*</span></label>
@@ -56,7 +56,7 @@
                             <h5 class="card-title mb-0">Yangi savol qo'shish</h5>
                         </div>
                         <div class="card-body h-100">
-                            <form action="{{ route('admin.new.pr.quiz') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('admin.new.olympic.quiz') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-3">
                                     <label class="form-label">Savol <span class="text-danger">*</span></label>
@@ -134,7 +134,7 @@
                                     </h5>
                                 </div>
                                 <div class="col-6 text-end">
-                                    <form action="{{ route('admin.pr.section.delete') }}" method="post"
+                                    <form action="{{ route('admin.olympic.section.delete') }}" method="post"
                                           class="d-inline">
                                         @csrf
                                         <input type="hidden" name="section_id" value="{{ $section->id }}">
@@ -170,7 +170,7 @@
                                     <td>{{ $quiz->answers[2]->answer }}</td>
                                     <td>{{ $quiz->answers[3]->answer }}</td>
                                     <td>{{ $quiz->ball }}</td>
-                                    <td><a href="{{ route('admin.pr.quiz.delete', ['id' => $quiz->id]) }}"
+                                    <td><a href="{{ route('admin.olympic.quiz.delete', ['id' => $quiz->id]) }}"
                                            class="btn mb-1 btn-bitbucket">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -182,7 +182,7 @@
                                             </svg>
                                         </a></td>
                                     <td>
-                                        <form action="{{ route('admin.pr.quiz.delete') }}" method="post">
+                                        <form action="{{ route('admin.olympic.quiz.delete') }}" method="post">
                                             @csrf
                                             <input type="hidden" name="quiz_id" value="{{ $quiz->id }}">
                                             <input type="hidden" name="exam_day_id" value="{{ $day->id }}">
