@@ -10,7 +10,7 @@ use App\Models\OlympicQuizSection;
 class OlympicQuizzesRepository
 {
     public function new_section($examDayId,$name, $photo, $topic){
-        $section = new OlympicOlympicQuizSection;
+        $section = new OlympicQuizSection;
         $section->name = $name;
         $section->exam_day_id = $examDayId;
         $section->photo = $photo;
